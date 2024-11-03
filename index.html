@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASSIST</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(25, 39, 59, 1), rgba(25, 39, 59, 1));
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: white;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: bounceIn 1.5s ease-out forwards;
+        }
+
+        .logo-container img {
+            width: 150px;
+            height: 150px;
+            animation: logoFocus 4s ease-in-out forwards;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes logoFocus {
+            0% {
+                transform: scale(1);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .glow-ring {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0;
+            animation: glowingRing 3s ease-out forwards;
+            z-index: -1;
+        }
+
+        @keyframes glowingRing {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .logo-text {
+            position: absolute;
+            top: 75%;
+            font-size: 1.8rem;
+            color: #d0e6ff;
+            opacity: 0;
+            animation: fadeInText 2.5s 1.5s ease-out forwards;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(30, 60, 120, 0.4), transparent);
+            opacity: 0;
+            animation: rippleEffect 3s 1.5s ease-out forwards;
+            z-index: -1;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .fade-out {
+            animation: fadeOutEffect 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeOutEffect {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="https://i0.wp.com/depedgentri.com/wp-content/uploads/2019/10/received_338969793491402.png?fit=300%2C300&ssl=1" alt="School Logo">
+        <div class="glow-ring"></div>
+        <div class="ripple"></div>
+    </div>
+
+    <div class="logo-text"></div>
+
+    <script>
+        setTimeout(function() {
+            document.body.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = 'main.html';
+            }, 1000);
+        }, 4000);
+    </script>
+	
+</body>
+</html>

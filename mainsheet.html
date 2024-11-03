@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Assistance Portal & Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #19273b;
+            color: #ddd;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            font-weight: 600;
+            color: #ddd;
+        }
+  h1, h2 {
+            font-weight: 600;
+            color: #ddd;
+        }
+
+        p {
+            color: #aaa;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 1200px;
+            padding: 40px;
+            background: rgba(40, 52, 73, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #0066ff, #0099ff);
+            padding: 15px 40px;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #0099ff, #00ccff);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 999;
+            font-size: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background-color: #34495e;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px 0;
+        }
+
+        .menu-content a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .menu-content a:hover {
+            background-color: #2c3e50;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.9rem;
+            padding: 10px 0;
+        }
+		
+		.btngg {
+      opacity: 0;
+      width: 100px; 
+      height: 40px;
+      border: none; 
+      cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Three-Line Menu -->
+    <div class="menu" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu-content" id="menuContent">
+        <a href="#" onclick="openLoginModal('index.html')">CID Chief Assist</a>
+        <a href="#" onclick="openLoginModal('https://docs.google.com')">EPS Assist</a>
+        <a href="#" onclick="openLoginModal('https://docs.google.com')">District Supervisor Assist</a>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h3>Login to Access</h3>
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button onclick="verifyLogin()">Submit</button>
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+    </div>
+
+    <!-- Technical Assistance Portal Section -->
+    <div class="container text-center">
+        <div class="logo">
+            <img src="ASSIST.png" alt="School Logo">
+        </div>
+        <h1>Advanced Support System for Improving Schools and Teachers Performance</h1>
+    </div>
+
+    <!-- Button Groups for Supervisors -->
+    <div class="container">
+        <h2 class="text-center">Public School District Supervisors</h2>
+        <div class="btn-group">
+            <button class="btn" onclick="checkPassword('Cluster 1', 'https://docs.google.com/spreadsheets/d/10gaZC-2KVp0zZirM_BEIoEuU1eaNFdCnOIOUb-30V7Q/edit?usp=sharing')">Cluster 1</button>
+            <button class="btn" onclick="checkPassword('Cluster 2', 'https://docs.google.com/spreadsheets/d/1CHxZ-ohWGzHuQh2LVXCmspxU_0g-k1R3YY6S0ED3fFU/edit?usp=sharing')">Cluster 2</button>
+			<button class="btn" onclick="checkPassword('Cluster 3', 'https://docs.google.com/spreadsheets/d/1RA5BfraB1hAJRxnBhpfuifEiFwBuFuBFOsej6cErFwc/edit?usp=sharing')">Cluster 3</button>
+			<button class="btn" onclick="checkPassword('Cluster 4', 'https://docs.google.com/spreadsheets/d/1c4YeKlJinjYbnXMxCmGwKUWcjeAqfxfp-Q7Eakh0ius/edit?usp=sharing')">Cluster 4</button>
+			<button class="btn" onclick="checkPassword('Cluster 5', 'https://docs.google.com/spreadsheets/d/1fYyDljEgCUzO01CISD2Yi2fe6sqKAmaqdaSqPoEooBA/edit?usp=sharing')">Cluster 5</button>
+        </div>
+		<div class="btn-group">
+            <button class="btn" onclick="checkPassword('Cluster 6', 'https://docs.google.com/spreadsheets/d/1PLwwf6fQ0eW8knaV0KZIMYdCgAnYvizw776hZDWydm0/edit?usp=sharing')">Cluster 6</button>
+            <button class="btn" onclick="checkPassword('Cluster 7', 'https://docs.google.com/spreadsheets/d/1KPgWreBRcmO_uirdtOopeDU7rzKGBV9uI5WujuWzjMw/edit?usp=sharing')">Cluster 7</button>
+			<button class="btn" onclick="checkPassword('Cluster 8', 'https://docs.google.com/spreadsheets/d/1nIkWlN3VwC5b5W6Bnm6B3BLbLfHfsuH_ZYx-Y1LdX5M/edit?usp=sharing')">Cluster 8</button>
+			<button class="btn" onclick="checkPassword('Cluster 9', 'https://docs.google.com/spreadsheets/d/1dqO9jW2EDElCQbX8WTXXHEfgqg34rWdX1lfJahUGinw/edit?usp=sharing')">Cluster 9</button>
+			<button class="btn" onclick="checkPassword('Cluster 10', 'https://docs.google.com/spreadsheets/d/1S5-eZI6vuis_MWiNE925vpGYLZeTPMbsNNWohPkTqzg/edit?usp=sharing')">Cluster 10</button>
+        </div>
+<BR><BR>
+        <h2 class="text-center">Education Program Supervisors</h2>
+      <div class="btn-group">
+            <button class="btn" onclick="checkPassword('English', 'https://docs.google.com/spreadsheets/d/1TZiyIjbpsyLMW5wm0GqcP4tuBryH6ZsK7jrmVvYwI24/edit?usp=sharing')">English</button>
+            <button class="btn" onclick="checkPassword('Mathematics', 'https://docs.google.com/spreadsheets/d/1YRH5irh5Tj4-i4IHGBB5pcbhIJu1wvIzcE0giCsgcHs/edit?usp=sharing')">Mathematics</button>
+			<button class="btn" onclick="checkPassword('Science', 'https://docs.google.com/spreadsheets/d/197QChj55lnhiP7tHSpTsg-bKMAZmNJQ5PH4GFFeG480/edit?usp=sharing')">Science</button>
+			<button class="btn" onclick="checkPassword('AP, MEP', 'https://docs.google.com/spreadsheets/d/1_VZQdC8uMtZqTeBbNj2aexc511618ik5eE5pfz0FXPI/edit?usp=sharing')">AP, MEP</button>
+			<button class="btn" onclick="checkPassword('MAPEH', 'https://docs.google.com/spreadsheets/d/1JOg6rOhQvpDngummREeui4pl-0YJp-nKrLtQ-vIA5J0/edit?usp=sharing')">MAPEH</button>
+        </div>
+		<div class="btn-group">
+            <button class="btn" onclick="checkPassword('Filipino', 'https://docs.google.com/spreadsheets/d/1WBk73bsRHUc5T9n8EbXxFEAUPv5GK5ci7WE595qtz-s/edit?usp=sharing')">Filipino</button>
+            <button class="btn" onclick="checkPassword('EsP, ALS', 'https://docs.google.com/spreadsheets/d/17g0BXu5DKT6NLkPXAzFoHepzmxQAfSlsL9H93yfEAGo/edit?usp=sharing')">EsP, ALS</button>
+			<button class="btn" onclick="checkPassword('EPP, TLE, and TVL', 'https://docs.google.com/spreadsheets/d/1sp7ni0onqmQyB-CNzx20m6V9qyILHjIx_FL_sZmxRog/edit?usp=sharing')">EPP, TLE, and TVL</button>
+			<button class="btn" onclick="checkPassword('EPS - LR', 'https://docs.google.com/spreadsheets/d/1Sh_AQ7WQIbirr_QJaVo92KX_7ScfFiopXt0kF3lh_0c/edit?usp=sharing')">EPS - LR</button>
+			<button class="btn" onclick="checkPassword('Kindergarten', 'https://docs.google.com/spreadsheets/d/12VFuvDl59d0xk-6Feg4Cw5sfRd7gDB5iPH-52mGtFyE/edit?usp=sharing')">Kindergarten</button>
+        </div>
+		<div class="btn-group">
+            <button class="btn btngg" onclick="window.open('https://docs.google.com/spreadsheets/d/1EJah22KSaATdhUAsmFJPKJEQWAKhReKNCWXB8aC_vcs/edit?usp=sharing')"></button>
+            <button class="btn btngg" onclick="window.open('https://docs.google.com/spreadsheets/d/1EJah22KSaATdhUAsmFJPKJEQWAKhReKNCWXB8aC_vcs/edit?usp=sharing')"></button>
+			<button class="btn" onclick="checkPassword('SNED', 'https://docs.google.com/spreadsheets/d/1Buj3-HgkbpTG_-0hBBlDbWMtboFZOcKy4INTQN35H0s/edit?usp=sharing')">SNED</button>
+			<button class="btn btngg" onclick="window.open('https://docs.google.com/spreadsheets/d/1EJah22KSaATdhUAsmFJPKJEQWAKhReKNCWXB8aC_vcs/edit?usp=sharing')"></button>
+			<button class="btn btngg" onclick="window.open('https://docs.google.com/spreadsheets/d/1EJah22KSaATdhUAsmFJPKJEQWAKhReKNCWXB8aC_vcs/edit?usp=sharing')"></button>
+        </div>
+    </div>
+
+<!-- Dashboard Section -->
+    <div class="container mt-5">
+        <h2 class="text-center">Technical Assistance Performance Dashboard</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card stat-card p-4 text-center">
+                    <div class="stat-title">Total TA Requested</div>
+                    <div class="statistic" id="totalRequestedTA">0</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stat-card p-4 text-center">
+                    <div class="stat-title">Total Accomplished Requests</div>
+                    <div class="statistic" id="totalRequests">0</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stat-card p-4 text-center">
+                    <div class="stat-title">Average Rating</div>
+                    <div class="statistic" id="averageRating">0.00</div>
+                </div>
+            </div>
+        </div>
+        <canvas id="taChart" class="mt-5"></canvas>
+    </div>
+
+    <footer>© 2024 Schools Division Office General Trias | All Rights Reserved</footer>
+<div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Enter Password</h2>
+      <input type="password" id="passwordInput" placeholder="Password" />
+      <button onclick="submitPassword()">Submit</button>
+    </div>
+  </div>
+<script>
+   function toggleMenu() {
+        const menuContent = document.getElementById('menuContent');
+        menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function openLoginModal(redirectUrl) {
+        const loginModal = document.getElementById('loginModal');
+        loginModal.style.display = 'flex';
+        sessionStorage.setItem('redirectUrl', redirectUrl);  // Store the redirect URL
+    }
+
+    async function checkCredentials(username, password) {
+        const url = 'https://script.google.com/macros/s/AKfycbwIA_m0XuXBfjLEc6K1v0ng87WMx9iVM8hLNsDlLiffAxXK_oUn2SGusHuTacF3NW77IA/exec';
+        const response = await fetch(`${url}?username=${username}&password=${password}`);
+        const result = await response.text();
+        return result === "success";
+    }
+
+    async function verifyLogin() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (await checkCredentials(username, password)) {
+            const redirectUrl = sessionStorage.getItem('redirectUrl');
+            window.location.href = redirectUrl || 'https://docs.google.com';  // Redirect to stored URL
+        } else {
+            errorMessage.textContent = 'Invalid username or password. Please try again.';
+        }
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('loginModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+    document.addEventListener('DOMContentLoaded', fetchStats);
+
+    async function fetchStats() {
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbxCbVS---ZMVB9Zk-VY6hCtDqvkSp295Jv4sL4Q-BDLtrLioKwt3Cud1pH7mmJVs-QA/exec');
+            const data = await response.json();
+
+            const totalRequests = data.countA;
+            const averageRating = data.averageF.toFixed(2);
+            const totalRequestedTA = data.requestedTA;
+
+            document.getElementById('totalRequests').innerText = totalRequests;
+            document.getElementById('averageRating').innerText = averageRating;
+            document.getElementById('totalRequestedTA').innerText = totalRequestedTA;
+
+            updateChart(totalRequestedTA, totalRequests, averageRating);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    function updateChart(totalRequestedTA, totalRequests, averageRating) {
+        const ctx = document.getElementById('taChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Total Requested', 'Total Accomplished', 'Average Rating'],
+                datasets: [{
+                    label: 'Technical Assistance Stats',
+                    data: [totalRequestedTA, totalRequests, averageRating],
+                    backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    }
+	
+
+  async function checkPassword(buttonText, url) {
+  const userPassword = prompt("Please enter the password:");
+  if (!userPassword) return;
+
+  // Pre-open a new tab to avoid popup blocker
+  const newWindow = window.open("", "_blank");
+
+  try {
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbz6oUmnYfKhNdcg8JssQWa3sX2iKfUYL_ugGr9UXGGOt_CwQEe5PEmu8xyWl-YCHccHzA/exec';
+    const response = await fetch(`${webAppUrl}?buttonText=${encodeURIComponent(buttonText)}`);
+    const correctPassword = await response.text();
+
+    if (userPassword === correctPassword) {
+      // Set the URL of the pre-opened tab
+      newWindow.location.href = url;
+    } else {
+      newWindow.close(); // Close the tab if the password is incorrect
+      alert("Incorrect password!");
+    }
+  } catch (error) {
+    newWindow.close(); // Close the tab in case of an error
+    console.error("Error fetching password:", error);
+  }
+}
+ let currentButtonText = '';
+    let currentUrl = '';
+
+    // Show the modal and set button details
+    function showModal(buttonText, url) {
+      currentButtonText = buttonText;
+      currentUrl = url;
+      document.getElementById("passwordModal").style.display = "block";
+    }
+
+    // Close the modal
+    function closeModal() {
+      document.getElementById("passwordModal").style.display = "none";
+    }
+
+    // Submit the password
+    async function submitPassword() {
+      const userPassword = document.getElementById("passwordInput").value;
+      if (!userPassword) return;
+
+      try {
+        const webAppUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+        // Fetch password from Google Sheets
+        const response = await fetch(`${webAppUrl}?buttonText=${encodeURIComponent(currentButtonText)}`);
+        const correctPassword = await response.text();
+
+        // Check if the entered password matches the correct password
+        if (userPassword === correctPassword) {
+          window.location.href = currentUrl;
+        } else {
+          alert("Incorrect password!");
+        }
+      } catch (error) {
+        console.error("Error fetching password:", error);
+      } finally {
+        closeModal(); // Close modal regardless of success or failure
+      }
+    }
+
+    // Close the modal if clicked outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById("passwordModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+</script>
+
+</body>
+
+</html>
